@@ -1,0 +1,39 @@
+ - name: Install anyenv
+   git:
+     repo: "{{ anyenv_repository_url }}"
+     dest: "{{ anyenv_installation_dir }}"
+ - name: Install anyenv plugins
+   git:
+     repo: "{{ item.repository_url }}"
+     dest: "{{ anyenv_plugins_installation_dir }}/{{ item.name }}"
+   with_items:
+      - "{{ anyenv_plugins }}"
+ - name: Create anyenv directory
+   file:
+     path: "{{ anyenv_installation_dir }}/envs/{{ item }}"
+     state: directory
+     mode: 0775
+   with_items:
+    - "{{ anyenv_envs }}"
+ - name: Install envs
+   shell:
+      "anyenv install -s {{ item }}"
+   environment:
+     PATH: "{{ anyenv_installation_dir }}/bin:{{ lookup('env', 'PATH') }}"
+   with_items:
+     - "{{ anyenv_envs }}"
+
+ - name: add profile.d
+   file: path=/etc/profile.d state=directory owner=root group=root mode=0600
+   become: yes
+
+ - name: add anyenv path
+   template:
+     src: anyenv.sh
+     dest: /etc/profile.d/anyenv.sh
+     owner: root
+     group: root
+     mode:  0600
+     become: yes
+   with_items: 
+     - "{{ anyenv_installation_dir }}"

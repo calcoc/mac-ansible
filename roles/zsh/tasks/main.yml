@@ -1,0 +1,7 @@
+- name: add .zshrc
+  template:
+    src:   .zshrc
+    dest:  ~/.zshrc
+    owner: root
+    group: root
+    mode:  0755
