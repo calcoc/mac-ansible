@@ -2,9 +2,6 @@ homebrew_taps:
   - homebrew/cask
 
 homebrew_packages:
-  - { name: rmtrash }
-  - { name: openssl }
-  - { name: wget }
   - { name: jq }
   - { name: git }
   - { name: tree }
@@ -17,11 +14,8 @@ homebrew_packages:
 homebrew_cask_packages:
   - { name: docker }
   - { name: visual-studio-code }
-  - { name: spectacle }
   - { name: slack }
   - { name: google-chrome }
-  - { name: boostnote }
-  - { name: skype }
   - { name: sequel-pro }
-  - { name: clipy }
-  - { name: ip-in-menu-bar}
+  - { name: ip-in-menu-bar }
+  - { name: raycast }
