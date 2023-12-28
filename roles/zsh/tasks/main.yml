@@ -1,6 +1,6 @@
 - name: add .zshrc
   template:
-    src:   .zshrc
+    src: .zshrc
     dest:  ~/.zshrc
     owner: root
     group: root
